@@ -3,35 +3,63 @@ import { useState } from 'react'
 
 export default function Home() {
 
+    const [stand, setStand] = useState({ "status": "pending" });
+
+    function submitHandler(event) {
+        event.preventDefault();
+        const standInfo = {};
+        standInfo.location = event.target.location.value;
+        standInfo.minCustomers = parseInt(event.target.minCustomers.value);
+        standInfo.maxCustomers = parseInt(event.target.maxCustomers.value);
+        standInfo.avgCookies = parseFloat(event.target.avgCookies.value);
+
+        setStand(standInfo);
+    }
+
     return (
         <div>
             <Head>
                 <title>Cookie Stand Admin</title>
             </Head>
-            <Header />
-            <main className="bg-green-50">
-                {/* <p>Hello</p> */}
-                <div className="bg-green-300 w-1/2 mx-auto flex p-2">
-                    <h3>Create Cookie Stand</h3>
-                    <Form/>
-                </div>
-                <h3 className="text-gray-700 mx-auto flex justify-center">Report Table Coming Soon...</h3>
-                <h3 className="text-gray-700 mx-auto flex justify-center">Words words and more words</h3>
+            <header className="flex p-6 bg-green-500">
+                <h1 className="text-2xl font-semibold">Cookie Stand Admin</h1>
+                <button className="flex-0 py-2 bg-white rounded h-1/2">Overview</button>
+            </header>
+            <main>
+                <form className="w-2/3 py-2 mx-auto my-8 bg-green-300" onSubmit={submitHandler}>
+                    <fieldset className="w-full">
+                        <legend className="text-xl font-semibold text-center">Create Cookie Stand</legend>
+                        <div className="flex py-10">
+                            <label className="" htmlFor="location">Location</label>
+                            <input className="flex-auto" id="location" name="location" type="text" />
+                        </div>
+                        <div className="flex gap-4">
+
+                            <div className="flex-1 bg-green-200 text-center rounded mx-3">
+                                <label htmlFor="min-customers">Minimum Customers per Hour</label>
+                                <input className="my-2" id="min-customers" name="minCustomers" type="number" required />
+                            </div>
+                            <div className="flex-1 bg-green-200 text-center rounded">
+                                <label htmlFor="max-customers">Maximum Customers per Hour</label>
+                                <input className="my-2" id="max-customers" name="maxCustomers" type="number" required />
+                            </div>
+                            <div className="flex-1 bg-green-200 text-center rounded">
+                                <label htmlFor="avg-cookies">Average Cookies per Sale</label>
+                                <input className="my-2" id="avg-cookies" name="avgCookies" type="number" step=".1" required />
+                            </div>
+                            <button className="flex-1 py-2 mx-2 bg-green-500 rounded">Create</button>
+                        </div>
+                    </fieldset>
+                </form>
+                <pre className="text-center">
+                    <code>
+                        {JSON.stringify(stand)}
+                    </code>
+                </pre>
             </main>
-            <footer className="bg-green-500 px-8 py-6 text-gray-700">
+            <footer className="py-6 pl-6 bg-green-500">
                 <p>&copy; 2021</p>
             </footer>
         </div>
-  )
-}
-function Header(props) {
-    return <header className="bg-green-500 p-8">
-        <h1 className="text-black text-4xl">Cookie Stand Admin</h1>
-    </header>                             
-}
-function Form(props) {
-    return <form onSubmit={props.onSubmit}>
-        <input name="location"type="text"/>
-        <button>Create</button>
-    </form>
+    )
 }
