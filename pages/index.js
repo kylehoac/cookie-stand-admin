@@ -1,9 +1,16 @@
 import Head from 'next/head'
 import { useState } from 'react'
+import React from 'react'
+import Header from "../components/header"
+import Main from "../components/main"
+
+class CookieStandAdmin extends React.Component {
+
+}
 
 export default function Home() {
 
-    const [stand, setStand] = useState({ "status": "pending" });
+    const [stand, setStand] = useState([{ "status": "pending" }]);
 
     function submitHandler(event) {
         event.preventDefault();
@@ -21,45 +28,7 @@ export default function Home() {
             <Head>
                 <title>Cookie Stand Admin</title>
             </Head>
-            <header className="flex p-6 bg-green-500">
-                <h1 className="text-2xl font-semibold">Cookie Stand Admin</h1>
-                <button className="flex-0 py-2 bg-white rounded h-1/2">Overview</button>
-            </header>
-            <main>
-                <form className="w-2/3 py-2 mx-auto my-8 bg-green-300" onSubmit={submitHandler}>
-                    <fieldset className="w-full">
-                        <legend className="text-xl font-semibold text-center">Create Cookie Stand</legend>
-                        <div className="flex py-10">
-                            <label className="" htmlFor="location">Location</label>
-                            <input className="flex-auto" id="location" name="location" type="text" />
-                        </div>
-                        <div className="flex gap-4">
-
-                            <div className="flex-1 bg-green-200 text-center rounded mx-3">
-                                <label htmlFor="min-customers">Minimum Customers per Hour</label>
-                                <input className="my-2" id="min-customers" name="minCustomers" type="number" required />
-                            </div>
-                            <div className="flex-1 bg-green-200 text-center rounded">
-                                <label htmlFor="max-customers">Maximum Customers per Hour</label>
-                                <input className="my-2" id="max-customers" name="maxCustomers" type="number" required />
-                            </div>
-                            <div className="flex-1 bg-green-200 text-center rounded">
-                                <label htmlFor="avg-cookies">Average Cookies per Sale</label>
-                                <input className="my-2" id="avg-cookies" name="avgCookies" type="number" step=".1" required />
-                            </div>
-                            <button className="flex-1 py-2 mx-2 bg-green-500 rounded">Create</button>
-                        </div>
-                    </fieldset>
-                </form>
-                <pre className="text-center">
-                    <code>
-                        {JSON.stringify(stand)}
-                    </code>
-                </pre>
-            </main>
-            <footer className="py-6 pl-6 bg-green-500">
-                <p>&copy; 2021</p>
-            </footer>
+            <Header />
         </div>
     )
 }
