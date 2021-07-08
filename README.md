@@ -2,4 +2,4 @@
 
 ## Link to PR
 
-[Pull Request](https://github.com/kylehoac/cookie-stand-admin/pull/2)
+[Pull Request](https://github.com/kylehoac/cookie-stand-admin/pull/3)
