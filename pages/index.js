@@ -3,32 +3,26 @@ import { useState } from 'react'
 import React from 'react'
 import Header from "../components/header"
 import Main from "../components/main"
-
-class CookieStandAdmin extends React.Component {
-
-}
+import Footer from "../components/footer"
+import ReportTable from "../components/table"
 
 export default function Home() {
 
-    const [stand, setStand] = useState([{ "status": "pending" }]);
+    const [stands, setStand] = useState([]);
 
-    function submitHandler(event) {
-        event.preventDefault();
-        const standInfo = {};
-        standInfo.location = event.target.location.value;
-        standInfo.minCustomers = parseInt(event.target.minCustomers.value);
-        standInfo.maxCustomers = parseInt(event.target.maxCustomers.value);
-        standInfo.avgCookies = parseFloat(event.target.avgCookies.value);
-
-        setStand(standInfo);
+    function standHandler(standInfo) {
+        const newStands = [...stands, standInfo]
+        setStand(newStands)
     }
+
 
     return (
         <div>
-            <Head>
-                <title>Cookie Stand Admin</title>
-            </Head>
+            <Head><title>Cookie Stand Admin</title></Head>
             <Header />
+            <Main onStandCreate={standHandler}/>
+            <ReportTable stands={stands}/>
+            <Footer stands={stands}/>
         </div>
     )
 }
