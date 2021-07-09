@@ -1,5 +1,3 @@
-import { render } from "react-dom";
-
 export default function Footer(props) {
   return (
     <footer className="py-6 pl-6 bg-green-500">
