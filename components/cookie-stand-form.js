@@ -6,9 +6,9 @@ export default function CookieStandForm(props) {
     standInfo.min = parseInt(event.target.min.value);
     standInfo.max = parseInt(event.target.max.value);
     standInfo.avg = parseFloat(event.target.avg.value);
-    standInfo.hourlySales = [
-      36, 24, 85, 23, 75, 24, 53, 52, 12, 61, 23, 42, 12, 32,
-    ];
+    // standInfo.hourlySales = [
+    //   36, 24, 85, 23, 75, 24, 53, 52, 12, 61, 23, 42, 12, 32,
+    // ];
 
     props.onStandCreate(standInfo);
   }
